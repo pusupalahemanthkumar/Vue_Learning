@@ -1,37 +1,27 @@
-// Creating Vue App
 const app = Vue.createApp({
   data() {
     return {
-      name: "",
-      fullName: "",
+      boxASelected: false,
+      boxBSelected: false,
+      boxCSelected: false,
     };
   },
-  watch: {
-    name(newValue, oldValue) {
-      if (newValue === "") {
-        this.fullName = "";
-      } else {
-        // this.fullName = this.name + " " + "TESTING !!!!";
-        this.fullName = newValue + " " + "TESTING !!!!";
-      }
-    },
-  },
   computed: {
-    // fullName(){
-    //     if(this.name === ''){
-    //         return '';
-    //     }
-    //     return this.name + "TESTING!!";
-    // }
+    boxAClasses() {
+      return { active: this.boxASelected };
+    },
   },
   methods: {
-    setName(event) {
-      this.name = event.target.value;
-    },
-    resetName() {
-      this.name = "";
+    boxSelected(box) {
+      if (box === 'A') {
+        this.boxASelected = !this.boxASelected;
+      } else if (box === 'B') {
+        this.boxBSelected = !this.boxBSelected;
+      } else if (box === 'C') {
+        this.boxCSelected = !this.boxCSelected;
+      }
     },
   },
 });
 
-app.mount("#app");
+app.mount('#styling');

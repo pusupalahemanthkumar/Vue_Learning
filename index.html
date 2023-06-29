@@ -3,35 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Import VueJs -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
-    <script src="./app.js" defer></script>
-
-    <!-- Link Styles  -->
-    <link rel="stylesheet" href="./styles.css" />
-    <title>VueJS</title>
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
   </head>
   <body>
     <header>
-      <h1>VueJS Basics</h1>
+      <h1>Vue Dynamic Styling</h1>
     </header>
-    <main id="app">
-        <!-- Two way binding -->
-        <input type="text"  v-on:input="setName($event)" v-bind:value="name"/>
-        <button v-on:click="resetName">Reset</button>
+    <!-- InlineStyle Dynamic -->
+    <!-- <section id="styling">
+      <div
+        class="demo"
+        :style="{borderColor: boxASelected ? 'red' : '#ccc'}"
+        @click="boxSelected('A')"
+      ></div>
+      <div class="demo" @click="boxSelected('B')"></div>
+      <div class="demo" @click="boxSelected('C')"></div>
+    </section> -->
 
-        <br />
-        <br />
-        <br />
+    <!-- Classes Dynamic -->
+    <!-- <section id="styling">
+      <div
+        :class="{demo: true, active: boxASelected}"
+        @click="boxSelected('A')"
+      ></div>
+      <div
+        class="demo"
+        :class="{active: boxBSelected}"
+        @click="boxSelected('B')"
+      ></div>
+      <div
+        class="demo"
+        :class="{active: boxCSelected}"
+        @click="boxSelected('C')"
+      ></div>
+    </section> -->
 
-        <!-- Two way binding with v-model -->
-        <input type="text"  v-model="name"/>
-        <button v-on:click="resetName">Reset</button>
-        
-        <!-- Computed Property -->
-        <p>{{fullName}}</p>
-     
-    </main>
+    <!-- Best Dynamic Approach -->
+    <section id="styling">
+      <div
+        class="demo"
+        :class="boxAClasses"
+        @click="boxSelected('A')"
+      ></div>
+      <div
+        :class="['demo', {active: boxBSelected}]"
+        @click="boxSelected('B')"
+      ></div>
+      <div
+        class="demo"
+        :class="{active: boxCSelected}"
+        @click="boxSelected('C')"
+      ></div>
+    </section>
+
   </body>
 </html>
