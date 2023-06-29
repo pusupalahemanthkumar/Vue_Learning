@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    background: #47e965;
+    padding: 1rem 2rem;
+}
+header h1{
+    text-align: center;
+}
+main .title{
+    text-align: center;
+    padding: 1.5rem;
+}
+main p{
+    text-align: center;
+    padding: 1rem;
+}
+#events{
+    margin-top: 2rem;
+}

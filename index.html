@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Import VueJs -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="./app.js" defer></script>
+
+    <!-- Link Styles  -->
+    <link rel="stylesheet" href="./styles.css" />
+    <title>VueJS</title>
+  </head>
+  <body>
+    <header>
+      <h1>VueJS Basics</h1>
+    </header>
+    <main id="app">
+      <!-- Interpolation -->
+      <h2 class="title">{{title2}}</h2>
+
+      <!-- Attribute binding with v-bind Directive -->
+      <p>Learn More <a v-bind:href="vueLink">About Vue</a></p>
+
+      <!-- We can calling Functions and Small JS Expresions inside {{}} -->
+      <p>{{dynamicTitle()}}</p>
+      <p>{{ fasle ? "Hello" : "Bye"}}</p>
+
+      <!-- HTML CONTENT OUTPUT -->
+      <div>{{htmlContent}}</div>
+      <div v-html="htmlContent"></div>
+      <!-- <div v-html="Somefunction()"></div> -->
+
+      <!-- Events -->
+
+      <section id="events">
+        <h2>Events in Action</h2>
+        <button v-on:click="counter++">Add</button>
+        <button v-on:click="counter--">Remove</button>
+        <p v-once >Result Lock: {{ counter }}</p>
+        <p>Result: {{ counter }}</p>
+      </section>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
+      <!-- Events -->
+      <section id="events1">
+        <h2>Events in Action</h2>
+        <button v-on:click="add">Add</button>
+        <button v-on:click="reduce">Remove</button>
+        <p>Result: {{ counter1 }}</p>
+      </section>
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
+       <!-- Events -->
+       <section id="events1">
+        <h2>Events in Action</h2>
+        <button v-on:click="addv(10)">Add</button>
+        <button v-on:click="reducev(10)">Remove</button>
+        <p>Result: {{ counter2 }}</p>
+      </section>
+
+
+      <!-- Native Event Object -->
+      <input type="text" v-on:input="setName($event,`Kumar`)" />
+      <p>{{name}}</p>
+
+
+      <!-- Event Modifier -->
+      <form v-on:submit="submitForm">
+        <input type="text" />
+        <button type="submit">Login</button>
+      </form>
+
+
+      <!-- Event Modifier -->
+      <!-- v-on:click.right   -->
+      <!-- v-on:click.left   -->
+      <!-- v-on:click.middle -->
+      <!-- v-on:keyup.enter="someMethod" -->
+      <form v-on:submit.prevent="submitForm1">
+        <input type="text" />
+        <button type="submit">Login</button>
+      </form>
+
+
+
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+    </main>
+  </body>
+</html>
