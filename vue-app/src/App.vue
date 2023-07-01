@@ -1,19 +1,10 @@
 <template>
-  <header>
-    <h1>{{ title }}</h1>
-  </header>
-
-  <div class="contacts">
-    <friend-contact
-      v-for="friend in friends"
-      :id="friend.id"
-      :key="friend.id"
-      :name="friend.name"
-      :phone-number="friend.phone"
-      :email-address="friend.email"
-      :is-favorite="friend.isFavorite"
-      @toggle-favorite="toggleFavoriteStatus"
-    ></friend-contact>
+  <div>
+    <active-element
+      :topic-title="activeTopic && activeTopic.title"
+      :text="activeTopic && activeTopic.fullText"
+    ></active-element>
+    <knowledge-base></knowledge-base>
   </div>
 </template>
 
@@ -21,58 +12,105 @@
 export default {
   data() {
     return {
-      title: `Vue CLI Project`,
-      friends: [
+      topics: [
         {
-          id: "HEMANTH",
-          name: "HEMANTH",
-          phone: "123456788",
-          email: "hemanth@gmail.com",
-          isFavorite: true,
+          id: 'basics',
+          title: 'The Basics',
+          description: 'Core Vue basics you have to know',
+          fullText:
+            'Vue is a great framework and it has a couple of key concepts: Data binding, events, components and reactivity - that should tell you something!',
         },
         {
-          id: "Jhon",
-          name: "JHON !!",
-          phone: "123456788",
-          email: "jhon@gmail.com",
-          isFavorite: false,
+          id: 'components',
+          title: 'Components',
+          description:
+            'Components are a core concept for building Vue UIs and apps',
+          fullText:
+            'With components, you can split logic (and markup) into separate building blocks and then combine those building blocks (and re-use them) to build powerful user interfaces.',
         },
       ],
+      activeTopic: null,
+    };
+  },
+  provide() {
+    return { 
+      topics: this.topics,
+      selectTopic: this.activateTopic
     };
   },
   methods: {
-    toggleFavoriteStatus(friendId) {
-      console.log(friendId);
-      const identifiedFriend = this.friends.find(
-        (friend) => friend.id === friendId
-      );
-      identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
+    activateTopic(topicId) {
+      this.activeTopic = this.topics.find((topic) => topic.id === topicId);
     },
   },
+  mounted() {
+    setTimeout(() => {
+      this.topics.push({
+        id: 'events',
+        title: 'Events',
+        description: 'Events are important in Vue',
+        fullText: 'Events allow you to trigger code on demand!'
+      });
+    }, 3000);
+  }
 };
 </script>
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
-header {
+html {
+  font-family: sans-serif;
+}
+body {
+  margin: 0;
+}
+section {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  margin: 2rem auto;
+  max-width: 40rem;
   padding: 1rem;
-  text-align: center;
-  background-color: rgb(70, 172, 70);
+  border-radius: 12px;
 }
-header h1 {
-  color: #f4f4f4;
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
-.contacts {
-  margin: 3rem auto;
-  max-width: 1000px;
-  padding: 2rem 1rem;
+
+li {
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  width: 15rem;
+  margin: 0 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+}
+
+h2 {
+  margin: 0.75rem 0;
+  text-align: center;
+}
+
+button {
+  font: inherit;
+  border: 1px solid #c70053;
+  background-color: #c70053;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+button:hover,
+button:active {
+  background-color: #e24d8b;
+  border-color: #e24d8b;
 }
 </style>
