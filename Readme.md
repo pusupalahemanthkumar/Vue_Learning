@@ -1,5 +1,5 @@
 ## VUE LEARNING
 
 ### Concepts Covered
-- Why and What Components?
-- Introduction Components
+- Project setup with vue cli
+- Components based exmaple
