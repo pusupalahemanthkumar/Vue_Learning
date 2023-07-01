@@ -1,5 +1,9 @@
 ## VUE LEARNING
 
 ### Concepts Covered
-- Project setup with vue cli
-- Components based exmaple
+- Component Communication
+```
+1. props for parent to child components
+2. emit event child to parent (this.$emit())
+3. provide and inject
+```
