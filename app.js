@@ -1,85 +1,53 @@
 const app = Vue.createApp({
   data() {
     return {
-      currentUserInput: '',
-      message: 'Vue is great!',
+      friends: [
+        {
+          id: 'Test',
+          name: 'Test',
+          phone: '01234 5678 991',
+          email: 'test@localhost.com',
+        },
+        {
+          id: 'demo',
+          name: 'demo',
+          phone: '09876 543 221',
+          email: 'demo@localhost.com',
+        },
+      ],
+    };
+  },
+});
+
+app.component('friend-contact', {
+  template: `
+  <li>
+    <h2>{{ friend.name }}</h2>
+    <button @click="toggleDetails()">
+      {{ detailsAreVisible ? 'Hide' : 'Show' }} Details
+    </button>
+    <ul v-if="detailsAreVisible">
+      <li><strong>Phone:</strong> {{ friend.phone }}</li>
+      <li><strong>Email:</strong> {{ friend.email }}</li>
+    </ul>
+  </li>
+  `,
+  data() {
+    return {
+      detailsAreVisible: false,
+      friend: {
+        id: 'demo',
+        name: 'demo',
+        phone: '01234 5678 991',
+        email: 'demo@localhost.com',
+      },
     };
   },
   methods: {
-    saveInput(event) {
-      this.currentUserInput = event.target.value;
+    toggleDetails() {
+      this.detailsAreVisible = !this.detailsAreVisible;
     },
-    setText() {
-      // this.message = this.currentUserInput;
-      this.message = this.$refs.userText.value;
-      // console.dir(this.$refs.userText);
-    },
-  },
-  beforeCreate() {
-    console.log('beforeCreate()');
-  },
-  created() {
-    console.log('created()');
-  },
-  beforeMount() {
-    console.log('beforeMount()');
-  },
-  mounted() {
-    console.log('mounted()');
-  },
-  beforeUpdate() {
-    console.log('beforeUpdate()');
-  },
-  updated() {
-    console.log('updated()');
-  },
-  beforeUnmount() {
-    console.log('beforeUnmount()');
-  },
-  unmounted() {
-    console.log('unmounted()');
   },
 });
 
 app.mount('#app');
-
-// setTimeout(function () {
-//   app.unmount();
-// }, 3000);
-
-const app2 = Vue.createApp({
-  template: `
-    <p>{{ favoriteMeal }}</p>
-  `,
-  data() {
-    return {
-      favoriteMeal: 'Pizza',
-    };
-  },
-});
-
-app2.mount('#app2');
-
-
-
-// PROXY CONCEPT IN JAVASCRIPT
-
-const data = {
-  message: 'Hello!',
-  longMessage: 'Hello! World!',
-};
-
-const handler = {
-  set(target, key, value) {
-    if (key === 'message') {
-      target.longMessage = value + ' World!';
-    }
-    target.message = value;
-  },
-};
-
-const proxy = new Proxy(data, handler);
-
-proxy.message = 'Hello!!!!';
-
-// console.log(proxy.longMessage);
