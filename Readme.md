@@ -1,9 +1,27 @@
 ## VUE LEARNING
 
 ### Concepts Covered
-- Component Communication
+
+- Component Registeration & Styling
 ```
-1. props for parent to child components
-2. emit event child to parent (this.$emit())
-3. provide and inject
+1. Global vs Local Components
+2. scoped styling
 ```
+
+- Slots 
+```
+  v-slot short-hand  => #
+
+```
+  
+- Dynamic Components
+```
+  <component :is="name"></compoent>
+```
+
+- teleport
+
+- Naming & Folder Structure
+
+
+
